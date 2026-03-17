@@ -32,6 +32,24 @@
 - Reuse data-driven structures so future Sanity fields can map into components without a rewrite.
 - Any CMS-facing content model should be simple, composable, and landing-page oriented.
 - Prefer maintainable implementations that a design-led team can continue working with safely.
+- Treat `main` as the production branch.
+- Treat `test` as the shared integration and staging branch.
+- Do not plan a separate test server when Vercel Preview Deployments can cover the workflow.
+
+## Branch Workflow
+- Every feature must be developed on its own branch.
+- Use branch names like `feature/<slug>` for features and `fix/<slug>` for fixes when needed.
+- Merge flow must be `feature/* -> test -> main`.
+- Do not merge feature branches directly into `main`.
+- Avoid direct pushes to `main`; avoid direct pushes to `test` as well whenever possible.
+- Use pull requests for `feature/* -> test` and for `test -> main`.
+
+## Vercel Workflow
+- Use Vercel as the main deployment platform for this project.
+- `main` should remain the Production Branch in Vercel.
+- `test` should be used as the main staging branch for integration review on Vercel Preview Deployments.
+- Each feature branch should also use its own Vercel preview URL for review when needed.
+- Before merging `test` into `main`, review UI quality, mobile behavior, performance, and Figma alignment on the Vercel preview generated from `test`.
 
 ## Required Skill References
 - Use `figma-implement-design` when implementing or refining UI from Figma.
